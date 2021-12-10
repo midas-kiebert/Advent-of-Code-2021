@@ -39,13 +39,5 @@ for n in lows:
         if prev == basins[n]:
             break
 
-sizes = [len(basin) for basin in basins]
-
-# Get the 3 largest sizes
-size1 = max(sizes)
-sizes.remove(max(sizes))
-size2 = max(sizes)
-sizes.remove(max(sizes))
-size3 = max(sizes)
-
-print(size1 * size2 * size3)
+sizes = sorted([len(basin) for basin in basins])
+print(sizes[-1] * sizes[-2] * sizes[-3])
