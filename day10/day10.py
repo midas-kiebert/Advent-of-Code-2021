@@ -11,6 +11,10 @@ stack = []
 res = 0
 legal_lines = []
 
+# Check every character in every line, if a bracket is opening, add it to the stack.
+# If it is closing, pop the stack and check if it matches. If it doesn't its an illegal bracket
+# and add the score.
+# If all chars have been checked and no illegal brackets were found, add the line to legal
 for line in lines:
     legal = True
     for char in line:
