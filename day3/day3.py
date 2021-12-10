@@ -1,32 +1,34 @@
 import numpy as np
 
-# Parse the input, turn every line into an array of integers
-lines = np.array([list(map(int, list(line.strip()))) for line in open('input.txt')])
+# Parse the input as an array of strings
+lines = [line.strip() for line in open('input.txt')]
 
-# Return a lambda that checks if a is larger/smaller than x / 2 if x is positive or negative respectively
-def lam(x):
-    return lambda a: str(int(np.sign(x) * a > x / 2))
+# The numbers array is zipped, take the sum of each digit, this is how many times there is a 1 in that digit.
+# Return an array of booleans that tells you if each digit is a 1 in a majority of the numbers.
+def get_bool_arr(numbers):
+    counts = np.array([sum([int(digit) for digit in col]) for col in zip(*numbers)])
+    return counts >= len(numbers) / 2
 
-# Sums all of the lines, maps the lambda onto every digit to see if it is
-# larger/smaller than half of the length of the input. This outputs a string of
-# Ones and zeros, which is converted into a decimal integer
-gamma = int(''.join(list(map(lam(len(lines)), sum(lines)))), 2)
-epsilon = int(''.join(list(map(lam(len(lines) * -1), sum(lines)))), 2)
-
+# Get the boolean array for the gamma rate and convert it into a decimal number
+# For epsilon take the reverse of the gamma boolean array
+gamma_arr = get_bool_arr(lines)
+gamma = int(''.join(map(str, gamma_arr * 1)), 2)
+epsilon = int(''.join(map(str, ~gamma_arr * 1)), 2)
 print(gamma * epsilon)
 
-# Take the lambda of the sum of the ith digit, only keep the
-# lines for which the output of the lambda at index is equal to the the digit at that index.
-# increment i, repeat until only 1 number remains, convert it to decimal.
-def calc_part2(x):
-    i = 0
-    lines_copy = lines
-    while len(lines_copy) > 1:
-        lines_copy = [line for line in lines_copy if str(line[i]) == lam(len(lines_copy) * x)(sum(lines_copy)[i])]
-        i += 1
-    return int(''.join(list(map(str, lines_copy[0]))),2)
+# For each digit check if there are multiple possible numbers
+# If there are, get the boolean array and only keep the numbers where
+# the current index matches with the boolean in the array
+ogr_lines = lines
+csr_lines = lines
+for i in range(len(lines[0])):
+    if len(ogr_lines) > 1:
+        ogr_arr = get_bool_arr(ogr_lines)
+        ogr_lines = [line for line in ogr_lines if int(line[i]) == ogr_arr[i]]
+    if len(csr_lines) > 1:
+        csr_arr = get_bool_arr(csr_lines)
+        csr_lines = [line for line in csr_lines if int(line[i]) != csr_arr[i]]
 
-oxygen = calc_part2(1)
-co2 = calc_part2(-1)
-
+oxygen = int(''.join(ogr_lines[0]), 2)
+co2 = int(''.join(csr_lines[0]), 2)
 print(oxygen * co2)
