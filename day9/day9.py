@@ -1,4 +1,3 @@
-import numpy as np
 heights = [int(digit) for digit in list(''.join([line.strip() for line in open('input.txt')]))]
 
 risk = 0
