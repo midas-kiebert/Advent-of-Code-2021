@@ -1,7 +1,6 @@
 import statistics
 lines = [list(line.strip()) for line in open('input.txt')]
 
-
 opening = ['(', '{', '[', '<']
 closing = [')', '}', ']', '>']
 scores = {')': 3, '}': 1197, ']': 57, '>': 25137}
