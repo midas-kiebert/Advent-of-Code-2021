@@ -7,13 +7,13 @@ print(sum([height + 1 for i, height in enumerate(heights) if (i % 100 == 0 or he
 
 def get_adj(n):
     adj = {n}
-    if n % 100 > 0 and heights[n-1] > heights[n] and heights[n-1] < 9:
+    if n % 100 > 0 and 9 > heights[n-1] > heights[n]:
         adj.add(n-1)
-    if n % 100 < 99 and heights[n+1] > heights[n] and heights[n+1] < 9:
+    if n % 100 < 99 and 9 > heights[n+1] > heights[n]:
         adj.add(n+1)
-    if n >= 100 and heights[n-100] > heights[n] and heights[n-100] < 9:
+    if n >= 100 and 9 > heights[n-100] > heights[n]:
         adj.add(n-100)
-    if n < 9900 and heights[n+100] > heights[n] and heights[n+100] < 9:
+    if n < 9900 and 9 > heights[n+100] > heights[n]:
         adj.add(n+100)
     return adj
 
