@@ -2,18 +2,27 @@ import itertools, numpy as np
 
 # Parse the input, turn it into a list
 moves = [move.split() for move in open('input.txt')]
+depth = 0
+horizontal = 0
 
-# Return an array of integers corresponding to the moves of direction
-def movement(direction):
-    return [int(move[1]) * (move[0] == direction) for move in moves]
+for move in moves:
+    if move[0] == 'down':
+        depth += int(move[1])
+    elif move[0] == 'up':
+        depth -= int(move[1])
+    else:
+        horizontal += int(move[1])
 
-# Make cumulative arrays for every down and up and a regular list for forward
-down = np.array(list(itertools.accumulate(movement('down'))))
-up = np.array(list(itertools.accumulate(movement('up'))))
-forward = movement('forward')
+print(depth * horizontal)
 
-aim = down - up
-depth = sum(aim * forward)
+aim = 0
+depth = 0
+for move in moves:
+    if move[0] == 'down':
+        aim += int(move[1])
+    elif move[0] == 'up':
+        aim -= int(move[1])
+    else:
+        depth += int(move[1]) * aim
 
-print(aim[-1] * sum(forward))
-print(depth * sum(forward))
+print(depth * horizontal)
