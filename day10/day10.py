@@ -33,6 +33,10 @@ print(res)
 
 stack = []
 res2 = []
+
+# Check every legal line and again add every opening bracket to the stack
+# And pop the stack everytime a closing bracket is found. After every char is checked
+# Iterate through every bracket left in the stack and update the score
 for line in legal_lines:
     line_res = 0
     for char in line:
