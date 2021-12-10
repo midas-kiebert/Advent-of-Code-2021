@@ -39,6 +39,7 @@ for i, line in enumerate(lines):
     line.remove(sets[4])
     line.remove(sets[7])
     line.remove(sets[8])
+
     for word in line:
         if len(word) == 6 and word & sets[4] == sets[4]:
             sets[9] = word
@@ -52,6 +53,7 @@ for i, line in enumerate(lines):
     line.remove(sets[3])
     line.remove(sets[6])
     line.remove(sets[9])
+
     for word in line:
         if word & sets[6] == word:
             sets[5] = word
