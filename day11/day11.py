@@ -19,14 +19,11 @@ while True:
         # If none flashed, done
         if len(flashed) == 0:
             break
-
         # Increment the flash counter and set the flashed octopuses to energy level 0
+        # Increment every octopus adjacent to a flashed octopus if they haven't flashed themselves
         for x, y in flashed:
             grid[x][y] = 0
             flash_count += 1
-
-        # Increment every octopus adjacent to a flashed octopus if they haven't flashed themselves
-        for x, y in flashed:
             for x2, y2 in get_adj(x, y, 10, 10):
                  if grid[x2, y2] > 0:
                      grid[x2, y2] += 1
@@ -38,5 +35,4 @@ while True:
     if not np.any(grid):
         print(i)
         break
-
     i += 1
