@@ -1,4 +1,4 @@
-heights = [int(digit) for digit in list(''.join([line.strip() for line in open('day09/input.txt')]))]
+heights = [int(digit) for digit in list(''.join([line.strip() for line in open('inputs/day09.txt')]))]
 
 risk = 0
 

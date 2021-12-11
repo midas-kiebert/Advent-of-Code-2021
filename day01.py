@@ -1,5 +1,5 @@
 # Parse the input, convert to integers
-depths = [int(depth) for depth in open("day01/input.txt")]
+depths = [int(depth) for depth in open("inputs/day01.txt")]
 
 # Return the length of a list of every depth that is larger than the depth that is n before itself.
 def depth_increases(n):

@@ -1,9 +1,9 @@
 # Print the length of the list that contains every space separated string after a '|' of length 2, 3, 4 or 7.
-print(len([word for word in ' '.join([line.strip().split(" | ")[1] for line in open('day08/input.txt')]).split(' ') if len(word) == 2 or len(word) == 3 or len(word) == 4 or len(word) == 7]))
+print(len([word for word in ' '.join([line.strip().split(" | ")[1] for line in open('inputs/day08.txt')]).split(' ') if len(word) == 2 or len(word) == 3 or len(word) == 4 or len(word) == 7]))
 
 # Create a list of the input before the '|' and after the '|'. Every word is turned into a set of characters
-lines = [[set(word) for word in (line.strip().split(" | ")[0].split())] for line in open('day08/input.txt')]
-displays = [[set(word) for word in (line.strip().split(" | ")[1].split())] for line in open('day08/input.txt')]
+lines = [[set(word) for word in (line.strip().split(" | ")[0].split())] for line in open('inputs/day08.txt')]
+displays = [[set(word) for word in (line.strip().split(" | ")[1].split())] for line in open('inputs/day08.txt')]
 total = 0
 
 # For every line, create ten empty sets, which correspond to the digits.

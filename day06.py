@@ -1,5 +1,5 @@
 # Parse input, make list of integers
-initial = [int(x) for x in open('day06/input.txt').read().split(',')]
+initial = [int(x) for x in open('inputs/day06.txt').read().split(',')]
 
 # The problem can be changed to make it easier to solve. Instead of a new fish taking 9 days
 # to multiply, it takes 7, and every other fish takes 9. This is the exact same problem

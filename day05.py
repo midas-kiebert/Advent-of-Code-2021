@@ -3,7 +3,7 @@ import re, numpy as np
 board = np.zeros([1000, 1000])
 
 # Parse input, turn every line into a list of 4 integers.
-lines = [list(map(int, num)) for num in [re.split(r'\D+', line.strip()) for line in open('day05/input.txt')]]
+lines = [list(map(int, num)) for num in [re.split(r'\D+', line.strip()) for line in open('inputs/day05.txt')]]
 
 # Split the lines into 3 lists, vertical, horizontal and diagonal
 vertical = [line for line in lines if line[0] == line[2]]
