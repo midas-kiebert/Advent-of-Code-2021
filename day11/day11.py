@@ -3,13 +3,11 @@ import numpy as np
 OFFSETS = {(1,0), (0,1), (-1, 0), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1)}
 grid = np.array([[int(num) for num in line.strip()] for line in open('input.txt')])
 
-# Return a set of coordinates of the adjacent squares
+# Return coordinates of the adjacent squares
 def get_adj(x_coord, y_coord, x_bound, y_bound):
-    adj = set([])
     for x, y in [(x_coord + dx, y_coord + dy) for dx, dy in OFFSETS]:
         if 0 <= x < x_bound and 0 <= y < y_bound:
-            adj.add((x, y))
-    return adj
+            yield x, y
 
 flash_count = 0
 i = 1
