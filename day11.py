@@ -32,7 +32,7 @@ while True:
         print(flash_count)
 
     # If the entire grid flashed, stop
-    if not np.any(grid):
+    if np.all(grid == 0):
         print(i)
         break
     i += 1
