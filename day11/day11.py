@@ -33,7 +33,7 @@ while True:
     # Print flash count after 100 iterations
     if i == 100:
         print(flash_count)
-    
+
     # If the entire grid flashed, stop
     if not np.any(grid):
         print(i)
