@@ -1,5 +1,5 @@
 # Parse the input, turn it into a list
-moves = [move.split() for move in open('input.txt')]
+moves = [move.split() for move in open('day02/input.txt')]
 depth = 0
 depth2 = 0
 horizontal = 0

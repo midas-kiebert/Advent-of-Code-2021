@@ -1,7 +1,7 @@
 import numpy as np
 
 # Parse the input as an array of strings
-lines = [line.strip() for line in open('input.txt')]
+lines = [line.strip() for line in open('day03/input.txt')]
 
 # The numbers array is zipped, take the sum of each digit, this is how many times there is a 1 in that digit.
 # Return an array of booleans that tells you if each digit is a 1 in a majority of the numbers.

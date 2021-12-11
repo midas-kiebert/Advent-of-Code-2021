@@ -1,4 +1,4 @@
-lines = [list(line.strip()) for line in open('input.txt')]
+lines = [list(line.strip()) for line in open('day10/input.txt')]
 
 opening = ['(', '{', '[', '<']
 closing = [')', '}', ']', '>']

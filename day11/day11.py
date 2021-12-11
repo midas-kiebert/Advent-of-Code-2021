@@ -1,7 +1,7 @@
 import numpy as np
 
 OFFSETS = {(1,0), (0,1), (-1, 0), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1)}
-grid = np.array([[int(num) for num in line.strip()] for line in open('input.txt')])
+grid = np.array([[int(num) for num in line.strip()] for line in open('day11/input.txt')])
 
 # Return coordinates of the adjacent squares
 def get_adj(x_coord, y_coord, x_bound, y_bound):

@@ -1,7 +1,7 @@
 import numpy as np
 
 # Parse the input, make an array of initial positions
-pos = np.array([int(x) for x in open('input.txt').read().split(',')])
+pos = np.array([int(x) for x in open('day07/input.txt').read().split(',')])
 
 # Try every number from the lowest to the highest position, the score is the sum of the
 # differences of every position and that number. The lowest of these scores is the answer.
