@@ -1,4 +1,3 @@
-import statistics
 lines = [list(line.strip()) for line in open('input.txt')]
 
 opening = ['(', '{', '[', '<']
@@ -49,4 +48,4 @@ for line in legal_lines:
         line_res += scores2[last]
     res2.append(line_res)
 
-print(statistics.median(res2))
+print(res2[len(res2) // 2])
