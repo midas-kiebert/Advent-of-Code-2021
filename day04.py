@@ -44,13 +44,12 @@ def part1():
 # to a set when the size of this set is amount_of_cards, every card is done
 def part2():
     done = set([])
-    amount_of_cards = len(cards)
     for number in numbers:
         mark_num(number)
         for c, card in enumerate(cards):
             if check_card(card):
                 done.add(c)
-                if len(done) == amount_of_cards:
+                if len(done) == len(cards):
                     return calculate_score(card)*int(number)
 
 print(part1())
