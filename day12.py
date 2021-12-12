@@ -10,27 +10,18 @@ for line in lines:
 
 # Recursive depth first search, each time 'end' is reached increment the total and return
 # Only continue the search if node is uppercase or if it has not yet been visited
-def search(current, visited):
+# If can_visit_twice is set to true, a lowercase node that is not 'start' or 'end'
+# Can be visited again if it has been visited. After a node has been visited twice
+# set can_visit_twice to false.
+def search(current, visited, can_visit_twice = False):
     global total
     if current == 'end':
         total += 1
         return
     for node in neighbours[current]:
         if node.isupper() or node not in visited:
-            search(node, visited | {node})
-
-# If the node is uppercase or has not yet been visited, continue like normal
-# If the node is lowercase and has been visited, the search after that node will
-# be exactly the same as if it was part 1, so switch over to the part 1 function
-def search2(current, visited):
-    global total
-    if current == 'end':
-        total += 1
-        return
-    for node in neighbours[current]:
-        if node.isupper() or node not in visited:
-            search2(node, visited | {node})
-        elif node not in {'start', 'end'}:
+            search(node, visited | {node}, can_visit_twice)
+        elif can_visit_twice and node not in {'start', 'end'}:
             search(node, visited)
 
 total = 0
@@ -38,5 +29,5 @@ search('start', {'start'})
 print(total)
 
 total = 0
-search2('start', {'start'})
+search('start', {'start'}, True)
 print(total)
