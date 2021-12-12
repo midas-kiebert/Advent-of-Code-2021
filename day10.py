@@ -43,9 +43,8 @@ for line in legal_lines:
         else:
             stack.pop()
     while len(stack) > 0:
-        last = stack.pop()
         line_res *= 5
-        line_res += scores2[last]
+        line_res += scores2[stack.pop()]
     res2.append(line_res)
 
 print(sorted(res2)[len(res2) // 2])
