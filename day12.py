@@ -7,23 +7,6 @@ for line in lines:
     lookup_table[line[0]].append(line[1])
     lookup_table[line[1]].append(line[0])
 
-print(lookup_table)
-
-
-
-# nodes = set([])
-# for line in lines:
-#     for cave in line:
-#         for node in cave.split('-'):
-#             nodes.add(node)
-# dict = defaultdict(set)
-
-# for node in nodes:
-#     for line in lines:
-#         if node in line:
-#             dict[node] |= line
-#     dict[node].remove(node)
-
 def search(current, visited, has_visited_twice):
     global total
     if current == 'end':
