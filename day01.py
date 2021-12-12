@@ -3,7 +3,7 @@ depths = [int(depth) for depth in open("inputs/day01.txt")]
 
 # Return the length of a list of every depth that is larger than the depth that is n before itself.
 def depth_increases(n):
-    return len([i for i in range(1, len(depths)) if depths[i] > depths[i - n]])
+    return len([i for i in range(n, len(depths)) if depths[i] > depths[i - n]])
 
 print(depth_increases(1))
 print(depth_increases(3))
