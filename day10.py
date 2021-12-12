@@ -48,4 +48,4 @@ for line in legal_lines:
         line_res += scores2[last]
     res2.append(line_res)
 
-print(res2[len(res2) // 2])
+print(sorted(res2)[len(res2) // 2])
