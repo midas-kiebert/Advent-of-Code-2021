@@ -25,7 +25,6 @@ for x1, y1, x2, _ in horizontal:
 
 print(np.count_nonzero(board >= 2))
 
-# Uses range that is inclusive and unordered
 for x1, y1, x2, y2 in diagonal:
     for i, x in enumerate(between(x1, x2)):
         board[y1 + i * np.sign(y2 - y1)][x] += 1
