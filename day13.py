@@ -39,4 +39,4 @@ plt.gca().set_aspect('equal')
 for x, y in coords:
     plt.scatter(x, y*-1, marker='s')
 
-plt.savefig("outputs/day13part2.png")
+plt.show()
