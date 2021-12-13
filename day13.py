@@ -1,5 +1,3 @@
-import matplotlib.pyplot as plt
-
 # Parse input, save coords as set of tuples
 # save instructions as a list of tuples containing the axis and where to fold
 raw = open('inputs/day13.txt').read().split('\n\n')
@@ -34,9 +32,15 @@ print(len(coords))
 for instruction in instructions[1:]:
     fold(coords, int(instruction[1]), instruction[0] == 'y')
 
-# Plot the result
-plt.gca().set_aspect('equal')
-for x, y in coords:
-    plt.scatter(x, y*-1, marker='s')
+xmax = max(coord[0] for coord in coords) + 1
+ymax = max(coord[1] for coord in coords) + 1
 
-plt.show()
+# Plot the result
+for y in range(ymax):
+    line = ""
+    for x in range(xmax):
+        if (x, y) in coords:
+            line += "#"
+        else:
+            line += " "
+    print(line)
