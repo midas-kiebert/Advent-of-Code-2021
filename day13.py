@@ -32,13 +32,13 @@ print(len(coords))
 for instruction in instructions[1:]:
     fold(coords, int(instruction[1]), instruction[0] == 'y')
 
-xmax = max(coord[0] for coord in coords) + 1
-ymax = max(coord[1] for coord in coords) + 1
+xmax = max(coord[0] for coord in coords)
+ymax = max(coord[1] for coord in coords)
 
 # Plot the result
-for y in range(ymax):
+for y in range(ymax + 1):
     line = ""
-    for x in range(xmax):
+    for x in range(xmax + 1):
         if (x, y) in coords:
             line += "#"
         else:
