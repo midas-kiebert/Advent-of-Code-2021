@@ -14,24 +14,25 @@ for i in initial:
 for i in ins:
     letters.add(i[1])
 
-def iterate(str, instructs):
-    insertions = []
-    for i in range(len(str) - 1):
-        pair = str[i] + str[i+1]
-        insertions.append(instructs[pair])
-    insertions.append('')
-    new = ""
-    for p in zip(str, insertions):
-        new += p[0] + p[1]
-    return new
+# OLD SLOW:
+# def iterate(str, instructs):
+#     insertions = []
+#     for i in range(len(str) - 1):
+#         pair = str[i] + str[i+1]
+#         insertions.append(instructs[pair])
+#     insertions.append('')
+#     new = ""
+#     for p in zip(str, insertions):
+#         new += p[0] + p[1]
+#     return new
 
-str = initial
+# str = initial
 
-for i in range(10):
-    str = iterate(str, instructs)
-    counts = set()
-    for a in letters:
-        counts.add(str.count(a))
+# for i in range(10):
+#     str = iterate(str, instructs)
+#     counts = set()
+#     for a in letters:
+#         counts.add(str.count(a))
 
 def iterate_fast(instructs, tally, ctr):
     new_tally = defaultdict(int)
