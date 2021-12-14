@@ -1,5 +1,5 @@
-import re, numpy as np
-from collections import defaultdict, Counter
+import re
+from collections import defaultdict
 
 input = [line.strip() for line in open('inputs/day14.txt')]
 
