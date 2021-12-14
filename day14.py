@@ -42,10 +42,9 @@ def iterate_fast(ins, tally, ctr):
 
 str = initial
 
-keys = [i[0] for i in ins]
 tally = defaultdict(int)
-for key in keys:
-    tally[key] += len(re.findall('(?=%s)' % key, str))
+for key in ins:
+    tally[key[0]] += len(re.findall('(?=%s)' % key[0], str))
 
 tally2 = tally
 
