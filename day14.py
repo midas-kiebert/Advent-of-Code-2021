@@ -6,30 +6,6 @@ input = [line.strip() for line in open('inputs/day14.txt')]
 initial = input[0]
 ins = [line.split(" -> ") for line in input[2:]]
 
-# OLD SLOW:
-# instructs = defaultdict(str)
-# for i in ins:
-#     instructs[i[0]] = i[1]
-
-# def iterate(str, instructs):
-#     insertions = []
-#     for i in range(len(str) - 1):
-#         pair = str[i] + str[i+1]
-#         insertions.append(instructs[pair])
-#     insertions.append('')
-#     new = ""
-#     for p in zip(str, insertions):
-#         new += p[0] + p[1]
-#     return new
-
-# str = initial
-
-# for i in range(10):
-#     str = iterate(str, instructs)
-#     counts = set()
-#     for a in str:
-#         counts.add(str.count(a))
-
 def iterate_fast(ins, tally, ctr):
     new_tally = defaultdict(int)
     for i in ins:
