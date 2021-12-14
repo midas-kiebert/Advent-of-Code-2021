@@ -46,21 +46,15 @@ keys = [i[0] for i in ins]
 tally = defaultdict(int)
 for key in keys:
     tally[key] += len(re.findall('(?=%s)' % key, str))
+
+tally2 = tally
+
 ctr = defaultdict(int)
 for let in str:
     ctr[let] += 1
 
-tally2 = tally
+
 for i in range(10):
-    tally2 = iterate_fast(ins, tally2, ctr)
-
-counts = []
-for i in ctr:
-    counts.append(ctr[i])
-
-print(max(counts) - min(counts))
-
-for i in range(40):
     tally = iterate_fast(ins, tally, ctr)
 
 counts = []
@@ -68,3 +62,17 @@ for i in ctr:
     counts.append(ctr[i])
 
 print(max(counts) - min(counts))
+
+
+ctr2 = defaultdict(int)
+for let in str:
+    ctr2[let] += 1
+
+for i in range(40):
+    tally2 = iterate_fast(ins, tally2, ctr2)
+
+counts2 = []
+for i in ctr2:
+    counts2.append(ctr2[i])
+
+print(max(counts2) - min(counts2))
