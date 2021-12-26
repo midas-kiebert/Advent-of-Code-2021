@@ -43,14 +43,14 @@ def solve(grid):
 
     while not pq.empty():
         current = pq.get()
-        if current[1] == goal_index:
-            print(current[0])
-            break;
         neighbours = get_adj(current[1] // W, current[1] % W, W, H)
         for n in neighbours:
             if priorities[current[1]] + risks[n] < priorities[n]:
                 priorities[n] = priorities[current[1]] + risks[n]
                 pq.put((priorities[n], n))
+            if n == goal_index:
+                print(current[0]+ risks[goal_index])
+                return;
 
 solve(original_grid)
 solve(grid)
