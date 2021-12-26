@@ -2,6 +2,7 @@ from queue import PriorityQueue
 import numpy as np
 
 OFFSETS = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+INF = 1e9
 
 # Return indices of the adjacent squares
 def get_adj(x_coord, y_coord, x_bound, y_bound):
@@ -25,13 +26,12 @@ def solve(grid):
     SIZE = W * H
     start_index = 0
     goal_index = SIZE - 1
-    inf = 99999999999999999999999999
 
     priorities = []
     risks = []
     for r, row in enumerate(grid):
         for c, col in enumerate(row):
-            priorities.append(inf)
+            priorities.append(INF)
             risks.append(grid[r][c])
 
     priorities[start_index] = 0
