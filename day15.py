@@ -1,6 +1,13 @@
 from queue import PriorityQueue
 import numpy as np
 
+OFFSETS = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+
+# Return indices of the adjacent squares
+def get_adj(x_coord, y_coord, x_bound, y_bound):
+    for x, y in [(x_coord + dx, y_coord + dy) for dx, dy in OFFSETS]:
+        if 0 <= x < x_bound and 0 <= y < y_bound:
+            yield x * x_bound + y
 
 grid = [[int(num) for num in line.strip()] for line in open("inputs/day15.txt")]
 original_grid = np.array(grid)
@@ -20,13 +27,6 @@ def solve(grid):
     goal_index = SIZE - 1
     inf = 99999999999999999999999999
 
-    OFFSETS = [(0, 1), (0, -1), (1, 0), (-1, 0)]
-
-    # Return indices of the adjacent squares
-    def get_adj(x_coord, y_coord, x_bound, y_bound):
-        for x, y in [(x_coord + dx, y_coord + dy) for dx, dy in OFFSETS]:
-            if 0 <= x < x_bound and 0 <= y < y_bound:
-                yield x * W + y
     priorities = []
     risks = []
     for r, row in enumerate(grid):
