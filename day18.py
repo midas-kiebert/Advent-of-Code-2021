@@ -9,11 +9,7 @@ def explode(number):
         if char == '[':
             depth += 1
             if depth == 5:
-                match = re.findall(r'\[\d+\,\d+\]', number[c:])
-                if match:
-                    match = match[0]
-                else:
-                    continue
+                match = re.findall(r'\[\d+\,\d+\]', number[c:])[0]
                 number = number[:c] + number[c:].replace(match, '', 1)
                 leftnum = re.findall(r'\d+', number[:c])
                 rightnum = re.findall(r'\d+', number[c:])
