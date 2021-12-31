@@ -1,6 +1,5 @@
 import numpy as np
 from scipy.spatial.transform import Rotation
-np.set_printoptions(suppress=True)
 
 scanners = []
 index = -1
