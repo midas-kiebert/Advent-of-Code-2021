@@ -1,9 +1,6 @@
-x = 0
-y = 1
-z = 2
-
-COS = {1: 0, 2: -1, 3: 0}
-SIN = {1: 1, 2: 0, 3: -1}
+import numpy as np
+from scipy.spatial.transform import Rotation
+np.set_printoptions(suppress=True)
 
 scanners = []
 index = -1
@@ -14,27 +11,48 @@ for line in open('inputs/day19.txt'):
         index += 1
         scanners.append([])
         continue
-    scanners[index].append(list(map(int, line.strip().split(','))))
+    scanners[index].append(tuple(map(int, line.strip().split(','))))
 
-def rotate(coords, turns, axis):
-    if turns == 0:
-        return coords
-    if axis == x:
-        return([coords[x],
-                round(coords[y] * COS[turns] - coords[z] * SIN[turns]),
-                round(coords[y] * SIN[turns] + coords[z] * COS[turns])])
-    if axis == y:
-        return([round(coords[x] * COS[turns] + coords[z] * SIN[turns]),
-                coords[y],
-                round(coords[z] * COS[turns] - coords[x] * SIN[turns])])
-    if axis == z:
-        return([round(coords[x] * COS[turns] - coords[y] * SIN[turns]),
-                round(coords[x] * SIN[turns] + coords[y] * COS[turns]),
-                coords[2]])
+matrices = Rotation.create_group("O").as_matrix()
 
+def get_rotations(s):
+    rotations = [s]
+    for matrix in matrices:
+        rotations.append(tuple(map(tuple, (np.rint(np.matmul(np.array(s), matrix)).astype(int)))))
+    return tuple(rotations)
 
-for scanner in scanners:
-    for rotation in range(4):
-        for axis in range(3):
-            temp = [rotate(coords, rotation, axis) for coords in scanner]
-            print(temp)
+def get_intersection(s1, s2):
+    global positions
+    for r in get_rotations(s2):
+        for count, i in enumerate(s1):
+            if len(s1) - count < 12:
+                break
+            for j in r:
+                offset = np.array(j) - i
+                shifted = set(map(tuple, np.array(r) - offset))
+                if len(s1 & shifted) >= 12:
+                    positions.append(offset)
+                    return shifted
+    return set()
+q = scanners[1:]
+
+discovered = set(scanners[0])
+positions = []
+
+while q:
+    current = q.pop(0)
+    intersect = get_intersection(discovered, current)
+    if intersect:
+        discovered |= intersect
+    else:
+        q.append(current)
+
+print(len(discovered))
+
+manhattan = 0
+
+for p1 in positions:
+    for p2 in positions:
+        manhattan = max(manhattan, np.sum(np.abs(p1 - p2)))
+
+print(manhattan)
