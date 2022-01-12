@@ -29,6 +29,7 @@ for line in lines:
 
 print(res)
 
+
 stack = []
 res2 = []
 

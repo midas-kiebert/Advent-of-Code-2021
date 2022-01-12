@@ -1,7 +1,7 @@
 import numpy as np
 
 # Parse the input as an array of strings
-lines = [line.strip() for line in open('inputs/day03.txt')]
+lines = [line.strip() for line in open('../inputs/day03.txt')]
 
 # The numbers array is zipped, take the sum of each digit, this is how many times there is a 1 in that digit.
 # Return an array of booleans that tells you if each digit is a 1 in a majority of the numbers.
@@ -28,7 +28,6 @@ for i in range(len(lines[0])):
     if len(csr_lines) > 1:
         csr_arr = get_bool_arr(csr_lines)
         csr_lines = [line for line in csr_lines if int(line[i]) != csr_arr[i]]
-
 oxygen = int(''.join(ogr_lines[0]), 2)
 co2 = int(''.join(csr_lines[0]), 2)
 print(oxygen * co2)
