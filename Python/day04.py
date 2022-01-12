@@ -1,5 +1,5 @@
 import numpy as np, collections
-raw = open('inputs/day04.txt').read()
+raw = open('../inputs/day04.txt').read()
 
 numbers = [raw.split('\n')[0].split(',')][0]
 cards = [[row.split() for row in card.split('\n')] for card in raw.split('\n\n')[1:]]
