@@ -3,14 +3,15 @@
 #include <vector>
 #include <utility>
 #include <sstream>
+#include <chrono>
+#include <iomanip>
 
 using namespace std;
 
-clock_t start, stop;
-float time_taken;
+#define INPUT_TYPE vector<pair<string, int>>
 
-vector<pair<string, int>> getInput(string path) {
-    vector<pair<string, int>> input;
+INPUT_TYPE getInput(string path) {
+    INPUT_TYPE input;
     ifstream inputFile;
     inputFile.open(path);
     string line;
@@ -27,10 +28,7 @@ vector<pair<string, int>> getInput(string path) {
     return input;
 }
 
-int main() {
-    vector<pair<string, int>> input = getInput("../inputs/day02.txt");
-    start = clock();
-
+int part1(const INPUT_TYPE& input) {
     int horizontal = 0, depth = 0, part1;
     for (auto line : input) {
         if (line.first == "forward") {
@@ -41,29 +39,38 @@ int main() {
             depth += line.second;
         }
     }
-    part1 = horizontal * depth;
+    return horizontal * depth;
+}
 
-    stop = clock();
-    time_taken = (float) (stop - start) / CLOCKS_PER_SEC * 1000;
-
-    cout << part1 << "\t\tSolved in " << time_taken << " ms\n";
-
-    start = clock();
-    int horizontal2 = 0, depth2 = 0, aim = 0, part2;
+int part2(const INPUT_TYPE& input) {
+    int horizontal = 0, depth = 0, aim = 0;
     for (auto line : input) {
         if (line.first == "forward") {
-            horizontal2 += line.second;
-            depth2 += aim * line.second;
+            horizontal += line.second;
+            depth += aim * line.second;
         } else if (line.first == "up") {
             aim -= line.second;
         } else {
             aim += line.second;
         }
     }
-    part2 = horizontal2 * depth2;
+    return horizontal * depth;
+}
 
-    stop = clock();
-    time_taken = (float) (stop - start) / CLOCKS_PER_SEC * 1000;
+int main() {
+    auto input = getInput("../inputs/day02.txt");
 
-    cout << part2 << "\tSolved in " << time_taken << " ms\n";
+    auto start1 = chrono::high_resolution_clock::now();
+    auto ans1 = part1(input);
+    auto end1 = chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = (end1 - start1) * 1000;
+
+    auto start2 = chrono::high_resolution_clock::now();
+    auto ans2 = part2(input);
+    auto end2 = chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed2 = (end2 - start2) * 1000;
+
+    int w = max(to_string(ans1).length(), to_string(ans2).length());
+    cout << setw(w) << ans1 << setw(20) << "Solved in " << elapsed.count() << " ms\n";
+    cout << setw(w) << ans2 << setw(20) << "Solved in " << elapsed2.count() << " ms\n";
 }

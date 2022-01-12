@@ -2,28 +2,25 @@
 #include <fstream>
 #include <vector>
 #include <chrono>
+#include <iomanip>
 
 using namespace std;
 
-clock_t start, stop;
-float time_taken;
+#define INPUT_TYPE vector<string>
 
-vector<string> getInput(string path) {
-    vector<string> input;
+INPUT_TYPE getInput(string path) {
+    INPUT_TYPE input;
     ifstream inputFile;
     inputFile.open(path);
-    string str;
-    while (getline(inputFile, str)) {
-        input.push_back(str);
+    string line;
+    while (getline(inputFile, line)) {
+        input.push_back(line);
     }
     inputFile.close();
     return input;
 }
 
-int main() {
-    vector<string> input = getInput("../inputs/day03.txt");
-    start = clock();
-
+int part1(const INPUT_TYPE& input) {
     int gamma = 0, epsilon = 0;
     for (int i = 0; i < input[0].length(); i++) {
         int ones = 0;
@@ -36,15 +33,10 @@ int main() {
             epsilon += 1 << input[0].length() - i - 1;
         }
     }
-    int part1 = gamma * epsilon;
+    return gamma * epsilon;
+}
 
-    stop = clock();
-    time_taken = (float) (stop - start) / CLOCKS_PER_SEC * 1000;
-
-    cout << part1 << "\t\tSolved in " << time_taken << " ms\n";
-
-    start = clock();
-
+int part2(const INPUT_TYPE& input) {
     int O2, CO2;
     vector<string> numbersO2 = input, numbersCO2 = input;
 
@@ -87,10 +79,23 @@ int main() {
 
         numbersCO2 = newCO2;
     }
-    int part2 = O2 * CO2;
+    return O2 * CO2;
+}
 
-    stop = clock();
-    time_taken = (float) (stop - start) / CLOCKS_PER_SEC * 1000;
+int main() {
+    auto input = getInput("../inputs/day03.txt");
 
-    cout << part2 << "\t\tSolved in " << time_taken << " ms\n";
+    auto start1 = chrono::high_resolution_clock::now();
+    auto ans1 = part1(input);
+    auto end1 = chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = (end1 - start1) * 1000;
+
+    auto start2 = chrono::high_resolution_clock::now();
+    auto ans2 = part2(input);
+    auto end2 = chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed2 = (end2 - start2) * 1000;
+
+    int w = max(to_string(ans1).length(), to_string(ans2).length());
+    cout << setw(w) << ans1 << setw(20) << "Solved in " << elapsed.count() << " ms\n";
+    cout << setw(w) << ans2 << setw(20) << "Solved in " << elapsed2.count() << " ms\n";
 }
