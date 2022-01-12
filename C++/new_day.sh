@@ -25,4 +25,3 @@ fi
 
 echo -e "\n$DAY: $FILE\n\tg++ -o $DAY $FILE\n" >> Makefile
 sed -i '1{s/$/ '$DAY'/}' Makefile
-sed -i '$ d' ../inputs/$DAY.txt
