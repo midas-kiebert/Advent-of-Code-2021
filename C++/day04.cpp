@@ -1,10 +1,10 @@
-#include <iostream>
-#include <fstream>
-#include <vector>
 #include <chrono>
+#include <fstream>
 #include <iomanip>
-#include <utility>
+#include <iostream>
 #include <unordered_set>
+#include <utility>
+#include <vector>
 
 using namespace std;
 
@@ -19,61 +19,62 @@ struct BingoNumber {
 
 class BingoBoard {
     public:
-        vector<BingoNumber> nums;
-        bool done;
+    vector<BingoNumber> nums;
+    bool done;
 
-        void test() {
-            nums[0].marked = true;
+    void test() {
+        nums[0].marked = true;
+    }
+
+    void mark(int n) {
+        for (BingoNumber &bn : nums) {
+            if (n == bn.num) {
+                bn.marked = true;
+            }
         }
+    }
 
-        void mark(int n) {
-            for (BingoNumber& bn : nums) {
-                if (n == bn.num) {
-                    bn.marked = true;
-                }
+    bool is_done() {
+        // Check Columns
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            bool col_done = true;
+            for (int j = 0; col_done && j < BOARD_SIZE * BOARD_SIZE;
+                 j += BOARD_SIZE) {
+                col_done = col_done && nums[i + j].marked;
+            }
+            if (col_done) {
+                done = true;
+                return true;
             }
         }
 
-        bool is_done() {
-            // Check Columns
-            for (int i = 0; i < BOARD_SIZE; i++) {
-                bool col_done = true;
-                for (int j = 0; col_done && j < BOARD_SIZE * BOARD_SIZE; j += BOARD_SIZE) {
-                    col_done = col_done && nums[i+j].marked;
-                }
-                if (col_done) {
-                    done = true;
-                    return true;
-                }
+        // Check Rows
+        for (int i = 0; i < BOARD_SIZE * BOARD_SIZE; i += BOARD_SIZE) {
+            bool row_done = true;
+            for (int j = 0; row_done && j < BOARD_SIZE; j++) {
+                row_done = row_done && nums[i + j].marked;
             }
-
-            // Check Rows
-            for (int i = 0; i < BOARD_SIZE * BOARD_SIZE; i += BOARD_SIZE) {
-                bool row_done = true;
-                for (int j = 0; row_done && j < BOARD_SIZE; j++) {
-                    row_done = row_done && nums[i+j].marked;
-                }
-                if (row_done) {
-                    done = true;
-                    return true;
-                }
+            if (row_done) {
+                done = true;
+                return true;
             }
-
-            return false;
         }
 
-        int unmarked_sum() {
-            int sum = 0;
-            for (BingoNumber bn : nums) {
-                if (!bn.marked) {
-                    sum += bn.num;
-                }
+        return false;
+    }
+
+    int unmarked_sum() {
+        int sum = 0;
+        for (BingoNumber bn : nums) {
+            if (!bn.marked) {
+                sum += bn.num;
             }
-            return sum;
         }
+        return sum;
+    }
 };
 
-vector<int> split(const string& s, char delimiter) {
+vector<int> split(const string &s, char delimiter) {
     vector<int> tokens;
     string token;
     istringstream tokenStream(s);
@@ -102,7 +103,7 @@ INPUT_TYPE getInput(string path) {
         BingoNumber bn;
 
         for (int j = 0; j < BOARD_SIZE; j++) {
-            stringstream ss(lines[i+j]);
+            stringstream ss(lines[i + j]);
             string s;
             while (ss >> s) {
                 bn.num = stoi(s);
@@ -117,10 +118,10 @@ INPUT_TYPE getInput(string path) {
     return input;
 }
 
-int part1(const INPUT_TYPE& input) {
+int part1(const INPUT_TYPE &input) {
     vector<BingoBoard> boards = input.second;
     for (int n : input.first) {
-        for (BingoBoard& bb : boards) {
+        for (BingoBoard &bb : boards) {
             bb.mark(n);
             if (bb.is_done()) {
                 return bb.unmarked_sum() * n;
@@ -130,13 +131,14 @@ int part1(const INPUT_TYPE& input) {
     return 0;
 }
 
-int part2(const INPUT_TYPE& input) {
+int part2(const INPUT_TYPE &input) {
     vector<BingoBoard> boards = input.second;
     int boards_left = boards.size();
 
     for (int n : input.first) {
-        for (BingoBoard& bb : boards) {
-            if (bb.done) continue;
+        for (BingoBoard &bb : boards) {
+            if (bb.done)
+                continue;
             bb.mark(n);
             if (bb.is_done() && --boards_left == 0) {
                 return bb.unmarked_sum() * n;
@@ -160,6 +162,8 @@ int main() {
     chrono::duration<double> elapsed2 = (end2 - start2) * 1000;
 
     int w = max(to_string(ans1).length(), to_string(ans2).length());
-    cout << setw(w) << ans1 << setw(20) << "Solved in " << elapsed.count() << " ms\n";
-    cout << setw(w) << ans2 << setw(20) << "Solved in " << elapsed2.count() << " ms\n";
+    cout << setw(w) << ans1 << setw(20) << "Solved in " << elapsed.count()
+         << " ms\n";
+    cout << setw(w) << ans2 << setw(20) << "Solved in " << elapsed2.count()
+         << " ms\n";
 }
