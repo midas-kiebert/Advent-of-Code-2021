@@ -1,0 +1,17 @@
+C++:
+
+day01:
+1390                Solved in 0.027387 ms
+1457                Solved in 0.025719 ms
+
+day02:
+2150351             Solved in 0.067098 ms
+1842742223          Solved in 0.066629 ms
+
+day03:
+4006064             Solved in 0.428619 ms
+5941884             Solved in 0.734441 ms
+
+day04:
+41668               Solved in 0.664073 ms
+10478               Solved in 2.83509 ms

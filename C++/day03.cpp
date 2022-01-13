@@ -20,6 +20,8 @@ INPUT_TYPE getInput(string path) {
     return input;
 }
 
+// 4006064
+// ~0.4 ms
 int part1(const INPUT_TYPE& input) {
     int gamma = 0, epsilon = 0;
     for (int i = 0; i < input[0].length(); i++) {
@@ -36,6 +38,8 @@ int part1(const INPUT_TYPE& input) {
     return gamma * epsilon;
 }
 
+// 5941884
+// ~0.7 ms
 int part2(const INPUT_TYPE& input) {
     int O2, CO2;
     vector<string> numbersO2 = input, numbersCO2 = input;
@@ -96,6 +100,5 @@ int main() {
     chrono::duration<double> elapsed2 = (end2 - start2) * 1000;
 
     int w = max(to_string(ans1).length(), to_string(ans2).length());
-    cout << setw(w) << ans1 << setw(20) << "Solved in " << elapsed.count() << " ms\n";
-    cout << setw(w) << ans2 << setw(20) << "Solved in " << elapsed2.count() << " ms\n";
-}
+    cout << left << setw(20) << ans1 << "Solved in " << elapsed.count() << " ms\n";
+    cout << left << setw(20) << ans2 << "Solved in " << elapsed2.count() << " ms\n";}

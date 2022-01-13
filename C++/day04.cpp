@@ -17,8 +17,7 @@ struct BingoNumber {
     bool marked;
 };
 
-class BingoBoard {
-    public:
+struct BingoBoard {
     vector<BingoNumber> nums;
     bool done;
 
@@ -118,6 +117,8 @@ INPUT_TYPE getInput(string path) {
     return input;
 }
 
+// 41668
+// ~0.7 ms
 int part1(const INPUT_TYPE &input) {
     vector<BingoBoard> boards = input.second;
     for (int n : input.first) {
@@ -131,6 +132,8 @@ int part1(const INPUT_TYPE &input) {
     return 0;
 }
 
+// 10478
+// ~2.8 ms
 int part2(const INPUT_TYPE &input) {
     vector<BingoBoard> boards = input.second;
     int boards_left = boards.size();
@@ -162,8 +165,6 @@ int main() {
     chrono::duration<double> elapsed2 = (end2 - start2) * 1000;
 
     int w = max(to_string(ans1).length(), to_string(ans2).length());
-    cout << setw(w) << ans1 << setw(20) << "Solved in " << elapsed.count()
-         << " ms\n";
-    cout << setw(w) << ans2 << setw(20) << "Solved in " << elapsed2.count()
-         << " ms\n";
+    cout << left << setw(20) << ans1 << "Solved in " << elapsed.count() << " ms\n";
+    cout << left << setw(20) << ans2 << "Solved in " << elapsed2.count() << " ms\n";
 }

@@ -28,6 +28,8 @@ INPUT_TYPE getInput(string path) {
     return input;
 }
 
+// 2150351
+// ~0.07 ms
 int part1(const INPUT_TYPE& input) {
     int horizontal = 0, depth = 0, part1;
     for (auto line : input) {
@@ -42,6 +44,8 @@ int part1(const INPUT_TYPE& input) {
     return horizontal * depth;
 }
 
+// 1842742223
+// ~0.07 ms
 int part2(const INPUT_TYPE& input) {
     int horizontal = 0, depth = 0, aim = 0;
     for (auto line : input) {
@@ -71,6 +75,6 @@ int main() {
     chrono::duration<double> elapsed2 = (end2 - start2) * 1000;
 
     int w = max(to_string(ans1).length(), to_string(ans2).length());
-    cout << setw(w) << ans1 << setw(20) << "Solved in " << elapsed.count() << " ms\n";
-    cout << setw(w) << ans2 << setw(20) << "Solved in " << elapsed2.count() << " ms\n";
+    cout << left << setw(20) << ans1 << "Solved in " << elapsed.count() << " ms\n";
+    cout << left << setw(20) << ans2 << "Solved in " << elapsed2.count() << " ms\n";
 }

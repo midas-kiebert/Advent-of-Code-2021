@@ -21,6 +21,8 @@ vector<int> getInput(string path) {
     return input;
 }
 
+// 1390
+// ~0.02 ms
 int part1(const vector<int>& input) {
     int result = 0;
     for (int i = 1; i < input.size(); i++) {
@@ -31,6 +33,8 @@ int part1(const vector<int>& input) {
     return result;
 }
 
+// 1457
+// ~0.02 ms
 int part2(const vector<int>& input) {
     int result = 0;
     for (int i = 3; i < input.size(); i++) {
@@ -55,6 +59,6 @@ int main() {
     chrono::duration<double> elapsed2 = (end2 - start2) * 1000;
 
     int w = max(to_string(ans1).length(), to_string(ans2).length());
-    cout << setw(w) << ans1 << setw(20) << "Solved in " << elapsed.count() << " ms\n";
-    cout << setw(w) << ans2 << setw(20) << "Solved in " << elapsed2.count() << " ms\n";
+    cout << left << setw(20) << ans1 << "Solved in " << elapsed.count() << " ms\n";
+    cout << left << setw(20) << ans2 << "Solved in " << elapsed2.count() << " ms\n";
 }

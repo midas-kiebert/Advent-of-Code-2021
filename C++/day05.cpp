@@ -2,20 +2,35 @@
 #include <fstream>
 #include <vector>
 #include <chrono>
+#include <sstream>
 #include <iomanip>
 
 using namespace std;
 
 #define INPUT_TYPE vector<int>
 
+struct line {
+    int x1, y1, x2, y2;
+};
+
 INPUT_TYPE getInput(string path) {
     INPUT_TYPE input;
     ifstream inputFile;
     inputFile.open(path);
-    string line;
-    while (getline(inputFile, line)) {
+    string temp;
+    string coord1Stream, coord2Stream;
+    vector<line> lines;
 
+    while (getline(inputFile, temp)) {
+        istringstream ss(temp);
+        ss >> coord1Stream;
+        ss.ignore(4);
+        ss >> coord2Stream;
+
+        line new_line;
     }
+
+    cout << coord1Stream << " " << coord2Stream << '\n';
     inputFile.close();
     return input;
 }
@@ -29,7 +44,7 @@ int part2(const INPUT_TYPE& input) {
 }
 
 int main() {
-    auto input = getInput("../inputs/dayXX.txt");
+    auto input = getInput("../inputs/day05.txt");
 
     auto start1 = chrono::high_resolution_clock::now();
     auto ans1 = part1(input);
