@@ -20,14 +20,11 @@ struct BingoBoard {
     vector<BingoNumber> nums;
     bool done;
 
-    void test() {
-        nums[0].marked = true;
-    }
-
     void mark(int n) {
         for (BingoNumber &bn : nums) {
             if (n == bn.num) {
                 bn.marked = true;
+                break;
             }
         }
     }
@@ -132,7 +129,7 @@ int part1(const INPUT_TYPE &input) {
 }
 
 // 10478
-// ~2.8 ms
+// ~2.6 ms
 int part2(const INPUT_TYPE &input) {
     vector<BingoBoard> boards = input.second;
     int boards_left = boards.size();
