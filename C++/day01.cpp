@@ -53,12 +53,12 @@ int main() {
     auto end1 = chrono::high_resolution_clock::now();
     chrono::duration<double> elapsed = (end1 - start1) * 1000;
 
+    cout << left << setw(20) << ans1 << "Solved in " << elapsed.count() << " ms\n";
+
     auto start2 = chrono::high_resolution_clock::now();
     auto ans2 = part2(input);
     auto end2 = chrono::high_resolution_clock::now();
     chrono::duration<double> elapsed2 = (end2 - start2) * 1000;
 
-    int w = max(to_string(ans1).length(), to_string(ans2).length());
-    cout << left << setw(20) << ans1 << "Solved in " << elapsed.count() << " ms\n";
     cout << left << setw(20) << ans2 << "Solved in " << elapsed2.count() << " ms\n";
 }
