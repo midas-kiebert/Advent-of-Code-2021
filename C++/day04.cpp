@@ -114,7 +114,7 @@ INPUT_TYPE getInput(string path) {
 }
 
 // 41668
-// ~0.7 ms
+// ~0.6 ms
 int part1(const INPUT_TYPE &input) {
     vector<BingoBoard> boards = input.second;
     for (int n : input.first) {
