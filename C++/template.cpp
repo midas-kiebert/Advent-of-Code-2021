@@ -21,11 +21,11 @@ INPUT_TYPE getInput(string path) {
 }
 
 int part1(const INPUT_TYPE& input) {
-
+    return 0;
 }
 
 int part2(const INPUT_TYPE& input) {
-
+    return 0;
 }
 
 int main() {
