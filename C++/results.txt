@@ -1,17 +1,23 @@
 C++:
 
 day01:
-1390                Solved in 0.027387 ms
-1457                Solved in 0.025719 ms
+1390                Solved in 0.027373 ms
+1457                Solved in 0.02464 ms
 
 day02:
-2150351             Solved in 0.067098 ms
-1842742223          Solved in 0.066629 ms
+2150351             Solved in 0.054333 ms
+1842742223          Solved in 0.053805 ms
 
 day03:
-4006064             Solved in 0.428619 ms
-5941884             Solved in 0.734441 ms
+4006064             Solved in 0.263334 ms
+5941884             Solved in 0.560054 ms
 
 day04:
-41668               Solved in 0.664073 ms
-10478               Solved in 2.83509 ms
+41668               Solved in 0.615633 ms
+10478               Solved in 2.86079 ms
+
+day05:
+31,985 988,28
+0                   Solved in 0.000121 ms
+0                   Solved in 4.6e-05 ms
+

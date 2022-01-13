@@ -1,8 +1,8 @@
+#include <chrono>
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 #include <vector>
-#include <chrono>
-#include <iomanip>
 
 using namespace std;
 
@@ -53,12 +53,14 @@ int main() {
     auto end1 = chrono::high_resolution_clock::now();
     chrono::duration<double> elapsed = (end1 - start1) * 1000;
 
-    cout << left << setw(20) << ans1 << "Solved in " << elapsed.count() << " ms\n";
+    cout << left << setw(20) << ans1 << "Solved in " << elapsed.count()
+         << " ms\n";
 
     auto start2 = chrono::high_resolution_clock::now();
     auto ans2 = part2(input);
     auto end2 = chrono::high_resolution_clock::now();
     chrono::duration<double> elapsed2 = (end2 - start2) * 1000;
 
-    cout << left << setw(20) << ans2 << "Solved in " << elapsed2.count() << " ms\n";
+    cout << left << setw(20) << ans2 << "Solved in " << elapsed2.count()
+         << " ms\n";
 }

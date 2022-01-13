@@ -21,7 +21,7 @@ struct BingoBoard {
     bool done;
 
     void mark(int n) {
-        for (BingoNumber &bn : nums) {
+        for (BingoNumber& bn : nums) {
             if (n == bn.num) {
                 bn.marked = true;
                 break;
@@ -69,7 +69,7 @@ struct BingoBoard {
     }
 };
 
-vector<int> split(const string &s, char delimiter) {
+vector<int> split(const string& s, char delimiter) {
     vector<int> tokens;
     string token;
     istringstream tokenStream(s);
@@ -115,10 +115,10 @@ INPUT_TYPE getInput(string path) {
 
 // 41668
 // ~0.6 ms
-int part1(const INPUT_TYPE &input) {
+int part1(const INPUT_TYPE& input) {
     vector<BingoBoard> boards = input.second;
     for (int n : input.first) {
-        for (BingoBoard &bb : boards) {
+        for (BingoBoard& bb : boards) {
             bb.mark(n);
             if (bb.is_done()) {
                 return bb.unmarked_sum() * n;
@@ -130,12 +130,12 @@ int part1(const INPUT_TYPE &input) {
 
 // 10478
 // ~2.6 ms
-int part2(const INPUT_TYPE &input) {
+int part2(const INPUT_TYPE& input) {
     vector<BingoBoard> boards = input.second;
     int boards_left = boards.size();
 
     for (int n : input.first) {
-        for (BingoBoard &bb : boards) {
+        for (BingoBoard& bb : boards) {
             if (bb.done)
                 continue;
             bb.mark(n);
@@ -155,12 +155,14 @@ int main() {
     auto end1 = chrono::high_resolution_clock::now();
     chrono::duration<double> elapsed = (end1 - start1) * 1000;
 
-    cout << left << setw(20) << ans1 << "Solved in " << elapsed.count() << " ms\n";
+    cout << left << setw(20) << ans1 << "Solved in " << elapsed.count()
+         << " ms\n";
 
     auto start2 = chrono::high_resolution_clock::now();
     auto ans2 = part2(input);
     auto end2 = chrono::high_resolution_clock::now();
     chrono::duration<double> elapsed2 = (end2 - start2) * 1000;
 
-    cout << left << setw(20) << ans2 << "Solved in " << elapsed2.count() << " ms\n";
+    cout << left << setw(20) << ans2 << "Solved in " << elapsed2.count()
+         << " ms\n";
 }
