@@ -5,11 +5,11 @@ for i in {01..25}
 do
     DAY=day$i
 
-    if [ ! -f "$DAY" ]; then
+    if [ ! -f "$DAY.out" ]; then
         break
     fi
 
-    RESULT=$(./$DAY)
+    RESULT=$(./$DAY.out)
     echo "$DAY:" >> "$FILE"
     echo -e "$RESULT\n" >> "$FILE"
 done

@@ -57,6 +57,8 @@ bool is_between(int a, int b, int c) {
     return false;
 }
 
+// 8350
+// ~2.2 ms
 int part1(const INPUT_TYPE& input) {
     int overlaps = 0;
     int grid[GRID_SIZE][GRID_SIZE] = {0};
@@ -76,6 +78,8 @@ int part1(const INPUT_TYPE& input) {
     return overlaps;
 }
 
+// 19374
+// ~1.4 ms
 int part2(const INPUT_TYPE& input) {
     int overlaps = 0;
     int grid[GRID_SIZE][GRID_SIZE] = {0};
