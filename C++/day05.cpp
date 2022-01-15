@@ -3,14 +3,19 @@
 #include <iomanip>
 #include <iostream>
 #include <sstream>
+#include <unordered_set>
 #include <vector>
 
 using namespace std;
 
-#define INPUT_TYPE vector<pair<point, point>>
+#define INPUT_TYPE vector<Line>
 
-struct point {
+struct Point {
     int x, y;
+};
+
+struct Line {
+    Point p1, p2;
 };
 
 INPUT_TYPE getInput(string path) {
@@ -28,11 +33,11 @@ INPUT_TYPE getInput(string path) {
         getline(ss, x2Str, ',');
         ss >> y2Str;
 
-        pair<point, point> line;
-        line.first.x = stoi(x1Str);
-        line.first.y = stoi(y1Str);
-        line.second.x = stoi(x2Str);
-        line.second.y = stoi(y2Str);
+        Line line;
+        line.p1.x = stoi(x1Str);
+        line.p1.y = stoi(y1Str);
+        line.p2.x = stoi(x2Str);
+        line.p2.y = stoi(y2Str);
 
         input.push_back(line);
     }
@@ -41,13 +46,29 @@ INPUT_TYPE getInput(string path) {
     return input;
 }
 
-int part1(const INPUT_TYPE& input) {
-    return 0;
+bool is_between(int a, int b, int c) {
+    if (c >= a && a >= b) return true;
+    if (b >= a && a >= c) return true;
+    return false;
 }
 
-int part2(const INPUT_TYPE& input) {
-    return 0;
+int part1(const INPUT_TYPE& input) {
+    int pointsWithOverlap = 0;
+
+    for (const auto& l1 : input) {
+        for (const auto& l2 : input) {
+            if (l1.p1.x == l1.p2.x && l2.p1.y == l2.p2.y &&
+                is_between(l1.p1.x, l2.p1.x, l2.p2.x) &&
+                is_between(l2.p1.y, l1.p1.y, l1.p2.y)) {
+                pointsWithOverlap++;
+                cout << l1.p1.x << "," << l1.p1.y << " -> " << l1.p2.x << "," << l1.p2.y << " & " << l2.p1.x << "," << l2.p1.y << " -> " << l2.p2.x << "," << l2.p2.y << endl;
+            }
+        }
+    }
+    return pointsWithOverlap;
 }
+
+int part2(const INPUT_TYPE& input) { return 0; }
 
 int main() {
     auto input = getInput("../inputs/day05.txt");
