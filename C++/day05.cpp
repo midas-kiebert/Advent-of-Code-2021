@@ -9,6 +9,8 @@ using namespace std;
 
 #define INPUT_TYPE vector<Line>
 
+const int GRID_SIZE = 1000;
+
 struct Point {
     int x, y;
 };
@@ -45,6 +47,10 @@ INPUT_TYPE getInput(string path) {
     return input;
 }
 
+int sign(int x) {
+    return (x > 0) - (x < 0);
+}
+
 bool is_between(int a, int b, int c) {
     if (c >= a && a >= b) return true;
     if (b >= a && a >= c) return true;
@@ -52,22 +58,42 @@ bool is_between(int a, int b, int c) {
 }
 
 int part1(const INPUT_TYPE& input) {
-    int pointsWithOverlap = 0;
+    int overlaps = 0;
+    int grid[GRID_SIZE][GRID_SIZE] = {0};
 
-    for (const auto& l1 : input) {
-        for (const auto& l2 : input) {
-            if (l1.p1.x == l1.p2.x && l2.p1.y == l2.p2.y &&
-                is_between(l1.p1.x, l2.p1.x, l2.p2.x) &&
-                is_between(l2.p1.y, l1.p1.y, l1.p2.y)) {
-                pointsWithOverlap++;
-                cout << l1.p1.x << "," << l1.p1.y << " -> " << l1.p2.x << "," << l1.p2.y << " & " << l2.p1.x << "," << l2.p1.y << " -> " << l2.p2.x << "," << l2.p2.y << endl;
-            }
+    for (auto l : input) {
+        int dx = sign(l.p2.x - l.p1.x);
+        int dy = sign(l.p2.y - l.p1.y);
+
+        while(dx * dy == 0) {
+            if (grid[l.p1.y][l.p1.x]++ == 1) overlaps++;
+            if (l.p1.x == l.p2.x && l.p1.y == l.p2.y) break;
+
+            l.p1.x += dx;
+            l.p1.y += dy;
         }
     }
-    return pointsWithOverlap;
+    return overlaps;
 }
 
-int part2(const INPUT_TYPE& input) { return 0; }
+int part2(const INPUT_TYPE& input) {
+    int overlaps = 0;
+    int grid[GRID_SIZE][GRID_SIZE] = {0};
+
+    for (auto l : input) {
+        int dx = sign(l.p2.x - l.p1.x);
+        int dy = sign(l.p2.y - l.p1.y);
+
+        while(true) {
+            if (grid[l.p1.y][l.p1.x]++ == 1) overlaps++;
+            if (l.p1.x == l.p2.x && l.p1.y == l.p2.y) break;
+
+            l.p1.x += dx;
+            l.p1.y += dy;
+        }
+    }
+    return overlaps;
+}
 
 int main() {
     auto input = getInput("../inputs/day05.txt");
