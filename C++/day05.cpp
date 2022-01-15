@@ -51,12 +51,6 @@ int sign(int x) {
     return (x > 0) - (x < 0);
 }
 
-bool is_between(int a, int b, int c) {
-    if (c >= a && a >= b) return true;
-    if (b >= a && a >= c) return true;
-    return false;
-}
-
 // 8350
 // ~2.2 ms
 int part1(const INPUT_TYPE& input) {
