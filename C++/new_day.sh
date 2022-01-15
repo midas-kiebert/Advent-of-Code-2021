@@ -2,14 +2,14 @@
 
 YEAR="2021"
 
-curl --silent -b $AOCSESSION https://adventofcode.com/$YEAR/day/$1/input -o ../inputs/$DAY.txt
-
 ZERO="0"
 if [ $1 -ge 10 ]; then
     ZERO=""
 fi
 
 DAY=day$ZERO$1
+
+curl --silent -b $AOCSESSION https://adventofcode.com/$YEAR/day/$1/input -o ../inputs/$DAY.txt
 
 FILE=$DAY.cpp
 if test -f "$FILE"; then
