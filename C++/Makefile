@@ -1,4 +1,4 @@
-all: day01.out day02.out day03.out day04.out day05.out day06.out
+all: day01.out day02.out day03.out day04.out day05.out day06.out day07.out
 
 clean:
 	rm *.out results.txt
@@ -20,4 +20,8 @@ day05.out: day05.cpp
 
 day06.out: day06.cpp
 	g++ -o day06.out day06.cpp
+
+
+day07.out: day07.cpp
+	g++ -o day07.out day07.cpp
 

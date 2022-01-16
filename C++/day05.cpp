@@ -58,10 +58,12 @@ int part1(const INPUT_TYPE& input) {
     int grid[GRID_SIZE][GRID_SIZE] = {0};
 
     for (auto l : input) {
+        if (l.p1.x != l.p2.x && l.p1.y != l.p2.y) continue;
+
         int dx = sign(l.p2.x - l.p1.x);
         int dy = sign(l.p2.y - l.p1.y);
 
-        while(dx * dy == 0) {
+        while(true) {
             if (grid[l.p1.y][l.p1.x]++ == 1) overlaps++;
             if (l.p1.x == l.p2.x && l.p1.y == l.p2.y) break;
 

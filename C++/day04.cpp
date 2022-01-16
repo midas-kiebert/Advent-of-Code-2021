@@ -35,7 +35,7 @@ struct BingoBoard {
             bool col_done = true;
             for (int j = 0; col_done && j < BOARD_SIZE * BOARD_SIZE;
                  j += BOARD_SIZE) {
-                col_done = col_done && nums[i + j].marked;
+                col_done = nums[i + j].marked;
             }
             if (col_done) {
                 done = true;
@@ -47,7 +47,7 @@ struct BingoBoard {
         for (int i = 0; i < BOARD_SIZE * BOARD_SIZE; i += BOARD_SIZE) {
             bool row_done = true;
             for (int j = 0; row_done && j < BOARD_SIZE; j++) {
-                row_done = row_done && nums[i + j].marked;
+                row_done = nums[i + j].marked;
             }
             if (row_done) {
                 done = true;
@@ -61,9 +61,7 @@ struct BingoBoard {
     int unmarked_sum() {
         int sum = 0;
         for (BingoNumber bn : nums) {
-            if (!bn.marked) {
-                sum += bn.num;
-            }
+            if (!bn.marked) sum += bn.num;
         }
         return sum;
     }
@@ -86,9 +84,7 @@ INPUT_TYPE getInput(string path) {
     string line;
     vector<string> lines;
 
-    while (getline(inputFile, line)) {
-        lines.push_back(line);
-    }
+    while (getline(inputFile, line)) lines.push_back(line);
 
     input.first = split(lines[0], ',');
 
@@ -120,24 +116,21 @@ int part1(const INPUT_TYPE& input) {
     for (int n : input.first) {
         for (BingoBoard& bb : boards) {
             bb.mark(n);
-            if (bb.is_done()) {
-                return bb.unmarked_sum() * n;
-            }
+            if (bb.is_done()) return bb.unmarked_sum() * n;
         }
     }
     return 0;
 }
 
 // 10478
-// ~2.6 ms
+// ~2.5 ms
 int part2(const INPUT_TYPE& input) {
     vector<BingoBoard> boards = input.second;
     int boards_left = boards.size();
 
     for (int n : input.first) {
         for (BingoBoard& bb : boards) {
-            if (bb.done)
-                continue;
+            if (bb.done) continue;
             bb.mark(n);
             if (bb.is_done() && --boards_left == 0) {
                 return bb.unmarked_sum() * n;
