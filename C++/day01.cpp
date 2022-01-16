@@ -22,25 +22,23 @@ vector<int> getInput(string path) {
 }
 
 // 1390
-// ~0.02 ms
+// ~0.01 ms
 int part1(const vector<int>& input) {
     int result = 0;
-    for (int i = 1; i < input.size(); i++) {
-        if (input[i] > input[i - 1]) {
-            result++;
-        }
+    int size = input.size();
+    for (int i = 1; i < size; i++) {
+        result += input[i] > input[i - 1];
     }
     return result;
 }
 
 // 1457
-// ~0.02 ms
+// ~0.01 ms
 int part2(const vector<int>& input) {
     int result = 0;
-    for (int i = 3; i < input.size(); i++) {
-        if (input[i] > input[i - 3]) {
-            result++;
-        }
+    int size = input.size();
+    for (int i = 1; i < size; i++) {
+        result += input[i] > input[i - 3];
     }
     return result;
 }
