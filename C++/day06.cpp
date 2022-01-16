@@ -12,20 +12,48 @@ INPUT_TYPE getInput(string path) {
     INPUT_TYPE input;
     ifstream inputFile;
     inputFile.open(path);
-    string line;
-    while (getline(inputFile, line)) {
-
+    string num;
+    while (getline(inputFile, num, ',')) {
+        input.push_back(stoi(num));
     }
     inputFile.close();
     return input;
 }
 
+// 380243
+// ~0.005 ms
 int part1(const INPUT_TYPE& input) {
-    return 0;
+    int age_groups[9] = {0};
+    int amount = 0;
+    for (int i : input) {
+        age_groups[i]++;
+        amount++;
+    }
+
+    for (int i = 0; i < 80; i++) {
+        age_groups[(i + 7) % 9] += age_groups[i % 9];
+        amount += age_groups[i % 9];
+    }
+
+    return amount;
 }
 
-int part2(const INPUT_TYPE& input) {
-    return 0;
+// 1708791884591
+// ~0.006 ms
+long part2(const INPUT_TYPE& input) {
+    long age_groups[9] = {0};
+    long amount = 0;
+    for (int i : input) {
+        age_groups[i]++;
+        amount++;
+    }
+
+    for (int i = 0; i < 256; i++) {
+        age_groups[(i + 7) % 9] += age_groups[i % 9];
+        amount += age_groups[i % 9];
+    }
+
+    return amount;
 }
 
 int main() {
