@@ -1,9 +1,9 @@
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <chrono>
-#include <iomanip>
 #include <algorithm>
+#include <chrono>
+#include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -14,9 +14,7 @@ INPUT_TYPE getInput(string path) {
     ifstream inputFile;
     inputFile.open(path);
     string num;
-    while (getline(inputFile, num, ',')) {
-        input.push_back(stoi(num));
-    }
+    while (getline(inputFile, num, ',')) { input.push_back(stoi(num)); }
     inputFile.close();
     return input;
 }
@@ -30,9 +28,7 @@ int median(const vector<int>& vec) {
 
 int mean(const vector<int>& v) {
     int sum = 0;
-    for (int i : v) {
-        sum += i;
-    }
+    for (int i : v) { sum += i; }
     return sum / v.size();
 }
 
@@ -41,9 +37,7 @@ int mean(const vector<int>& v) {
 int part1(const INPUT_TYPE& input) {
     int m = median(input);
     int result = 0;
-    for (int i : input) {
-        result += abs(i - m);
-    }
+    for (int i : input) { result += abs(i - m); }
 
     return result;
 }
@@ -71,12 +65,14 @@ int main() {
     auto end1 = chrono::high_resolution_clock::now();
     chrono::duration<double> elapsed = (end1 - start1) * 1000;
 
-    cout << left << setw(20) << ans1 << "Solved in " << elapsed.count() << " ms\n";
+    cout << left << setw(20) << ans1 << "Solved in " << elapsed.count()
+         << " ms\n";
 
     auto start2 = chrono::high_resolution_clock::now();
     auto ans2 = part2(input);
     auto end2 = chrono::high_resolution_clock::now();
     chrono::duration<double> elapsed2 = (end2 - start2) * 1000;
 
-    cout << left << setw(20) << ans2 << "Solved in " << elapsed2.count() << " ms\n";
+    cout << left << setw(20) << ans2 << "Solved in " << elapsed2.count()
+         << " ms\n";
 }
