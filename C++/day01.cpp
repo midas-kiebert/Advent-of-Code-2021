@@ -6,9 +6,6 @@
 
 using namespace std;
 
-clock_t start, stop;
-float time_taken;
-
 vector<int> getInput(string path) {
     vector<int> input;
     ifstream inputFile;

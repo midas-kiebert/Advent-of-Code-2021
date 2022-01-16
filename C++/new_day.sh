@@ -23,5 +23,5 @@ if grep -q $DAY "Makefile"; then
     exit
 fi
 
-echo -e "\n$DAY.out: $FILE\n\tg++ -o $DAY.out $FILE\n" >> Makefile
+echo -e "\n$DAY.out: $FILE\n\tg++ -o $DAY.out $FILE" >> Makefile
 sed -i '1{s/$/ '$DAY'.out/}' Makefile

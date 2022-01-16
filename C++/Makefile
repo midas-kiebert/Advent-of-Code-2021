@@ -21,7 +21,5 @@ day05.out: day05.cpp
 day06.out: day06.cpp
 	g++ -o day06.out day06.cpp
 
-
 day07.out: day07.cpp
 	g++ -o day07.out day07.cpp
-
