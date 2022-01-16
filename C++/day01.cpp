@@ -37,7 +37,7 @@ int part1(const vector<int>& input) {
 int part2(const vector<int>& input) {
     int result = 0;
     int size = input.size();
-    for (int i = 1; i < size; i++) {
+    for (int i = 3; i < size; i++) {
         result += input[i] > input[i - 3];
     }
     return result;
