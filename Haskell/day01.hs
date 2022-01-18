@@ -1,7 +1,7 @@
 readInput :: FilePath -> IO [Int]
 readInput path
-    = map read
-    . lines <$> readFile path
+    = map read . lines
+    <$> readFile path
 
 part1 :: [Int] -> Int
 part1

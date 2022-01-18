@@ -1,8 +1,8 @@
 import Data.DList (list)
 readInput :: FilePath -> IO [[String]]
 readInput path
-    = map words
-    . lines <$> readFile path
+    = map words . lines
+    <$> readFile path
 
 moves :: String -> [[String]] -> [Int]
 moves direction input
