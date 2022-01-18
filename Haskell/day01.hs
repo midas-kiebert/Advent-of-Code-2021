@@ -1,11 +1,19 @@
 readInput :: FilePath -> IO [Int]
-readInput path = map read . lines <$> readFile path
+readInput path
+    = map read
+    . lines <$> readFile path
 
 part1 :: [Int] -> Int
-part1 input = length . filter (== True) $ zipWith (>) (tail input) input
+part1
+    = length
+    . filter (== True)
+    . (zipWith (<) <*> tail)
 
 part2 :: [Int] -> Int
-part2 input = length . filter (== True) $ zipWith (>) (drop 3 input) input
+part2
+    = length
+    . filter (== True)
+    . (zipWith (<) <*> drop 3)
 
 main :: IO ()
 main = do
