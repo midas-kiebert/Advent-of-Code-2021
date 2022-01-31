@@ -17,7 +17,7 @@ matrices = Rotation.create_group("O").as_matrix()
 def get_rotations(s):
     rotations = [s]
     for matrix in matrices:
-        rotations.append(tuple(map(tuple, (np.rint(np.matmul(np.array(s), matrix)).astype(int)))))
+        rotations.append(tuple(map(tuple, (np.rint(np.array(s) @ matrix).astype(int)))))
     return tuple(rotations)
 
 def get_intersection(s1, s2):
