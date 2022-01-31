@@ -4,4 +4,6 @@
 .clang-format
 .vscode/settings.json
 results.txt
-Rust/!*.*
+Rust/*
+!Rust//**/
+!Rust/*.*
