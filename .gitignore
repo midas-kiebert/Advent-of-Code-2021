@@ -4,3 +4,4 @@
 .clang-format
 .vscode/settings.json
 results.txt
+!*.*
