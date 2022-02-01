@@ -1,31 +1,30 @@
 C++:
 
 day01:
-1390                Solved in 0.012401 ms
-1457                Solved in 0.015211 ms
+1390                Solved in 0.000316 ms
+1457                Solved in 0.000275 ms
 
 day02:
-2150351             Solved in 0.061208 ms
-1842742223          Solved in 0.061156 ms
+2150351             Solved in 0.018259 ms
+1842742223          Solved in 0.017489 ms
 
 day03:
-4006064             Solved in 0.280482 ms
-5941884             Solved in 0.552617 ms
+4006064             Solved in 0.036334 ms
+5941884             Solved in 0.094033 ms
 
 day04:
-41668               Solved in 0.596477 ms
-10478               Solved in 2.53393 ms
+41668               Solved in 0.033944 ms
+10478               Solved in 0.191628 ms
 
 day05:
-8350                Solved in 2.37725 ms
-19374               Solved in 1.461 ms
+8350                Solved in 1.41839 ms
+19374               Solved in 0.575335 ms
 
 day06:
-380243              Solved in 0.004785 ms
-1708791884591       Solved in 0.005648 ms
+380243              Solved in 0.000409 ms
+1708791884591       Solved in 0.000558 ms
 
 day07:
-331067              Solved in 0.067256 ms
-4943411028
-92881128            Solved in 0.038141 ms
+331067              Solved in 0.007331 ms
+92881128            Solved in 0.00088 ms
 

@@ -7,3 +7,5 @@ results.txt
 Rust/*
 !Rust//**/
 !Rust/*.*
+Haskell/
+!Haskell/*.hs
